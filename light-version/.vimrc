@@ -76,32 +76,3 @@ func! CompileRun()
     endif
 endfunc
 " }}
-" add header for files {{
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java, exec ":call SetTitle()"
-func SetTitle()
-    if &filetype == 'sh'
-        call setline(1,"\#!/bin/bash")
-    endif
-    if &filetype == 'cpp'
-        call setline(1, "/* author: dongchangzhang */")
-        call append(line("."), "/* time: ".strftime("%c")." */")
-        call append(line(".")+1, "")
-        call append(line(".")+2, "#include<algorithm>")
-        call append(line(".")+3, "#include<iostream>")
-        call append(line(".")+4, "#include<vector>")
-        call append(line(".")+5, "#include<string>")
-        call append(line(".")+6, "")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        call setline(1, "/* author: dongchangzhang */")
-        call append(line("."), "/* time: ".strftime("%c")." */")
-        call append(line(".")+1, "")
-        call append(line(".")+2, "#include<stdio.h>")
-        call append(line(".")+3, "")
-    endif
-    autocmd BufNewFile * normal G
-endfunc
-"
-" }}

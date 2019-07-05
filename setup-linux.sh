@@ -1,13 +1,13 @@
-!#/bin/bash
-
+#!/bin/bash
 
 # print log
 print_log() {
     echo -e  "\033[0;31;1m INSTALL-LOGS: $1  \033[0m"
     echo LOGS: $1 >> $LOG
 }
+
 backup() {
-        # for .vimrc
+    # for .vimrc
     if [ -f "$HOME/.vimrc" ]; then 
         print_log "mv $HOME/.vimrc to $HOME/.vimrc.bak"
         mv $HOME/.vimrc $HOME/.vimrc.bak
@@ -19,7 +19,7 @@ backup() {
     fi
 }
 # do config
-full() {
+full_version() {
     cp full-version/.vimrc $HOME/
     cp full-version/.ycm_extra_conf.py $HOME/
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -29,10 +29,12 @@ full() {
     $HOME/.vim/bundle/YouCompleteMe/install.sh  --clang-completer --system-libclang
     print_log "done"
 }
-light() {
+light_version() {
 
     cp light-version/.vimrc $HOME/
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     cp -r colors ~/.vim/
     vim +PluginInstall +qall
 }
+
+full_version

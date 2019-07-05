@@ -21,6 +21,7 @@ set shiftwidth=4
 set softtabstop=4
 set history=1000
 " }}
+"
 " leader {{
 let mapleader=","
 nmap <leader>w :w!<CR>
@@ -31,6 +32,7 @@ nmap <leader>y "+y
 nmap <leader>p "+p
 nmap <space> :
 nmap <C-l> :noh<CR>
+
 "buffer
 nmap <leader><Tab> :bn<CR>
 "strip all trailing whitespace in the current file
@@ -63,7 +65,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " add plugin at there
-
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -203,33 +204,4 @@ func! CompileRun()
         :!python %
     endif
 endfunc
-" }}
-" add header for files {{
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java, exec ":call SetTitle()" 
-func SetTitle() 
-    if &filetype == 'sh' 
-        call setline(1,"\#!/bin/bash") 
-    endif
-    if &filetype == 'cpp'
-        call setline(1, "/* author: dongchangzhang */")
-        call append(line("."), "/* time: ".strftime("%c")." */")
-        call append(line(".")+1, "")
-        call append(line(".")+2, "#include<algorithm>")
-        call append(line(".")+3, "#include<iostream>")
-        call append(line(".")+4, "#include<vector>")
-        call append(line(".")+5, "#include<string>")
-        call append(line(".")+6, "")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        call setline(1, "/* author: dongchangzhang */")
-        call append(line("."), "/* time: ".strftime("%c")." */")
-        call append(line(".")+1, "")
-        call append(line(".")+2, "#include<stdio.h>")
-        call append(line(".")+3, "")
-    endif
-    autocmd BufNewFile * normal G
-endfunc 
-"
 " }}
